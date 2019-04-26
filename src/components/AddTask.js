@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
 class AddTask extends Component {
+      state={
+            textEntered:""
+      }
+      onAddClicked=() =>
+      {
+          this.props.addTaskFunction();      
+      }
+      onTextChanged=(event)=>{
+            this.setState({textEntered: event.target.value})
+      }
     render()
     {
         return(
          <div>
               <div class="row">
-                          <div class= "col-lg-4 first">
+                          <div class= "col-lg-4 ">
                                 <label>Enter your task</label>
-                            
                           </div>
-                          <div class= "col-lg-6 second">
-                                <input type="text" name="nAdd"></input>
+                          <div class= "col-lg-6 ">
+                                <input type="text" onTextChanged={this.onTextChanged} name="nAdd"></input>
                           </div>
-                          <div class= "col-lg-2 third">
-                                <button type="button" class="btn btn-primary">ADD</button>
+                          <div class= "col-lg-2 ">
+                                <button type="button" onClick={this.onAddClicked} class="btn btn-primary">ADD</button>
                           </div>
                         </div>
          </div>  

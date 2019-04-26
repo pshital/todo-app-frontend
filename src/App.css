@@ -27,7 +27,7 @@
   box-sizing: border-box;
 }
 
-h1 {
+#header{
   margin:0;
   text-align:center;
   border-bottom: 1px solid #eee;
@@ -43,8 +43,14 @@ h1 {
   border-radius:10px;
   border:4px solid #b1c9bb;
   font-family: sans-serif;
-}
 
+}
+h1 {
+  margin:0;
+  text-align:center;
+  border-bottom: 1px solid #eee;
+ 
+}
 
 .row {
   text-align:center;
@@ -55,7 +61,22 @@ h1 {
   margin:15px 0;
 }
 
+.taskcontainer {
+  background:#d3d7ef;
+  padding:25px;
+  max-width:760px;
+  margin:25px auto;
+  overflow:hidden;
+  border-radius:10px;
+  border:4px solid #b1c9bb;
+  font-family: sans-serif;
+}
 
+.remainingTask{
+  text-align: center;
+  text-decoration: brown;
+  text-shadow: #b1c9bb
+}
 
 @keyframes App-logo-spin {
   from {
