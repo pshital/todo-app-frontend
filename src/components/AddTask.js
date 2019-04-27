@@ -5,7 +5,7 @@ class AddTask extends Component {
       }
       onAddClicked=() =>
       {
-          this.props.addTaskFunction();      
+          this.props.addTaskFunction(this.state.textEntered);      
       }
       onTextChanged=(event)=>{
             this.setState({textEntered: event.target.value})
@@ -19,7 +19,7 @@ class AddTask extends Component {
                                 <label>Enter your task</label>
                           </div>
                           <div class= "col-lg-6 ">
-                                <input type="text" onTextChanged={this.onTextChanged} name="nAdd"></input>
+                                <input type="text" onChanged={this.onTextChanged} name="nAdd"></input>
                           </div>
                           <div class= "col-lg-2 ">
                                 <button type="button" onClick={this.onAddClicked} class="btn btn-primary">ADD</button>

@@ -35,7 +35,7 @@ class App extends Component {
             </div>
             {
               this.state.tasks.map(function (item, index) {
-                return <DisplayTask tasksName={item} key={index} />
+                return <DisplayTask taskName={item} key={index} />
               })
             }
            
