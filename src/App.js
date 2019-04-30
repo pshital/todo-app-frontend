@@ -18,6 +18,12 @@ class App extends Component {
     this.setState({ tasks: currentListOfTasks })
 
   }
+  
+  deleteTask(index){
+    const tasks = this.state.tasks
+    tasks.splice(index, 1)    
+    //this.setState({tasks})
+  }
   render() {
     //const tasks=["a","b","c","d"]
     return (
@@ -34,12 +40,16 @@ class App extends Component {
               <TaskRemaining taskCount={this.state.tasks.length}/>
             </div>
             {
+              
+             // if(task.length!=0)
               this.state.tasks.map(function (item, index) {
                 return <DisplayTask taskName={item} key={index} />
               })
             }
-           
+            
+            
             </div>
+           
         </div>
         </div>
         );
