@@ -20,9 +20,14 @@ class App extends Component {
   }
   
   deleteTask(index){
-    const tasks = this.state.tasks
-    tasks.splice(index, 1)    
-    //this.setState({tasks})
+   // this.setState({
+     // tasks: this.state.tasks.filter(el => el !== index)
+    //})
+    let todos  = this.state;
+        todos.splice(index, 1);
+        this.setState({
+            tasks: todos
+        })
   }
   render() {
     //const tasks=["a","b","c","d"]
@@ -43,7 +48,7 @@ class App extends Component {
               
              // if(task.length!=0)
               this.state.tasks.map(function (item, index) {
-                return <DisplayTask taskName={item} key={index} />
+                return <DisplayTask taskName={item} key={index} deletetaskFunction={this.deleteTask} />
               })
             }
             
