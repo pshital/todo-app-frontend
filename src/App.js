@@ -5,6 +5,7 @@ import Header from './components/Header'
 import AddTask from './components/AddTask'
 import DisplayTask from './components/DisplayTask'
 import TaskRemaining from './components/TaskRemaining'
+import uuid1 from 'uuid/v1'
 
 
 class App extends Component {
@@ -12,25 +13,62 @@ class App extends Component {
     tasks: []
   }
 
-  addTask(taskDecription) {
+  addTask = (taskText) => {
     let currentListOfTasks = this.state.tasks;
-    currentListOfTasks.push(taskDecription);
+    const taskid = uuid1();
+    const newTask = {
+      taskDescription: taskText,
+      id: taskid,
+      completed: false
+    }
+    currentListOfTasks.push(newTask);
     this.setState({ tasks: currentListOfTasks })
 
   }
-  
-  deleteTask(index){
-   // this.setState({
-     // tasks: this.state.tasks.filter(el => el !== index)
-    //})
-    let todos  = this.state;
-        todos.splice(index, 1);
-        this.setState({
-            tasks: todos
-        })
+
+  deleteTask = (taskid) => {
+    const existingTask = this.state.tasks;
+    const filterTask = existingTask.filter(function (item, index) {
+      return item.id !== taskid;
+    });
+    this.setState({ tasks: filterTask })
+
   }
+
+  doneTasks = (taskid) => {
+    let tempTasklist = this.state.tasks.map(task => {
+      if (task.id === taskid) {
+        return {
+          id: task.id,
+          taskDescription: task.taskDescription,
+          completed: true
+        }
+      } else {
+        return task
+      }
+    });
+    this.setState({ tasks: tempTasklist })
+    
+  }
+
+  countRemainingTask = ()=> {
+    let count = 0;
+    const existingTask = this.state.tasks;
+    for (let i = 0; i < existingTask.length; i++) {
+      if (existingTask.completed)
+        count++
+        //alert(count)
+    }
+    
+    return count;
+    
+  }
+
+
+
+
   render() {
-    //const tasks=["a","b","c","d"]
+
     return (
       <div className="container">
         <div >
@@ -42,23 +80,21 @@ class App extends Component {
               <AddTask addTaskFunction={this.addTask.bind(this)} />
             </div>
             <div>
-              <TaskRemaining taskCount={this.state.tasks.length}/>
+              <TaskRemaining taskCount={this.countRemainingTask} />
             </div>
             {
-              
-             // if(task.length!=0)
-              this.state.tasks.map(function (item, index) {
-                return <DisplayTask taskName={item} key={index} deletetaskFunction={this.deleteTask} />
+              this.state.tasks.map((item, index) => {
+                return <DisplayTask task={item} key={index} deletetaskFunction={this.deleteTask} donetaskFunction={this.doneTasks} />
               })
+
             }
             
-            
-            </div>
-           
+          </div>
+
         </div>
-        </div>
-        );
-      }
-    }
-    
-    export default App;
+      </div>
+    );
+  }
+}
+
+export default App;

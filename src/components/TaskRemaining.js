@@ -3,10 +3,9 @@ class TaskRemaining extends Component {
     render() {
         return (
             <div className="remainingTask">
-            <p>You have {this.props.taskCount} remaining tasks</p>
+            <p>You have {this.props.taskCount()} remaining tasks</p>
             </div>
         );
-
-    }
+   }
 }
 export default TaskRemaining;

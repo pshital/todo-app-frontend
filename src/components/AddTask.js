@@ -15,13 +15,13 @@ class AddTask extends Component {
         return(
          <div>
               <div class="row">
-                          <div class= "col-lg-4 ">
+                          <div className= "col-lg-4 ">
                                 <label>Enter your task</label>
                           </div>
-                          <div class= "col-lg-6 ">
+                          <div className= "col-lg-6 ">
                                 <input type="text" onChange={this.onTextChanged} name="nAdd"></input>
                           </div>
-                          <div class= "col-lg-2 ">
+                          <div className= "col-lg-2 ">
                                 <button type="button" onClick={this.onAddClicked} class="btn btn-primary">ADD</button>
                           </div>
                         </div>
