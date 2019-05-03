@@ -57,7 +57,7 @@ class App extends Component {
     for (let i = 0; i < existingTask.length; i++) {
       if (existingTask.completed)
         count++
-        //alert(count)
+       
     }
     
     return count;
