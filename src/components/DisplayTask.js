@@ -9,6 +9,7 @@ class DisplayTask extends Component {
             
                 <div className="col-sm-12 col-md-8 " >
                     <span style={{'text-decoration': this.props.task.completed ? 'line-through': 'none'}}>
+                   
                     {this.props.task.taskDescription}
                     </span> 
                     

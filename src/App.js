@@ -54,10 +54,14 @@ class App extends Component {
   countRemainingTask = ()=> {
     let count = 0;
     const existingTask = this.state.tasks;
+  
     for (let i = 0; i < existingTask.length; i++) {
-      if (existingTask.completed)
-        count++
-       
+      console.log(existingTask)
+      if (!existingTask[i].completed){
+        console.log(count)
+        count++;}
+
+    alert(count)   
     }
     
     return count;
