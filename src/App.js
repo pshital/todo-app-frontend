@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header'
-import AddTask from './components/AddTask'
-import DisplayTask from './components/DisplayTask'
-import TaskRemaining from './components/TaskRemaining'
-import uuid1 from 'uuid/v1'
-
+import Header from './components/Header';
+import AddTask from './components/AddTask';
+import DisplayTask from './components/DisplayTask';
+import TaskRemaining from './components/TaskRemaining';
+import uuid1 from 'uuid/v1';
+import axios from 'axios';
 
 class App extends Component {
   state = {
@@ -19,10 +19,11 @@ class App extends Component {
     const newTask = {
       taskDescription: taskText,
       id: taskid,
-      completed: false
+      completed: false,
+      
     }
-    currentListOfTasks.push(newTask);
-    this.setState({ tasks: currentListOfTasks })
+   // currentListOfTasks.push(newTask);
+    //this.setState({ tasks: currentListOfTasks })
 
   }
 
@@ -41,7 +42,8 @@ class App extends Component {
         return {
           id: task.id,
           taskDescription: task.taskDescription,
-          completed: true
+          completed: true,
+          
         }
       } else {
         return task
@@ -56,20 +58,32 @@ class App extends Component {
     const existingTask = this.state.tasks;
   
     for (let i = 0; i < existingTask.length; i++) {
-      console.log(existingTask)
+      
       if (!existingTask[i].completed){
-        console.log(count)
+      
         count++;}
 
-    alert(count)   
+    
     }
     
     return count;
     
   }
 
-
-
+  componentDidMount =()=>{
+    axios.get('https://j0nyne8byl.execute-api.eu-west-2.amazonaws.com/dev/tasks')
+        .then(function(response){
+          console.log(response);
+        })
+        . catch(err => {
+          console.log(err);
+        })
+        .then(response => {
+          this.setState({
+            tasks: response.data});
+        })
+  }
+  
 
   render() {
 
@@ -88,7 +102,8 @@ class App extends Component {
             </div>
             {
               this.state.tasks.map((item, index) => {
-                return <DisplayTask task={item} key={index} deletetaskFunction={this.deleteTask} donetaskFunction={this.doneTasks} />
+                return <DisplayTask task={item} key={index} 
+                deletetaskFunction={this.deleteTask} donetaskFunction={this.doneTasks} />
               })
 
             }
