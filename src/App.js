@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import AddTask from './components/AddTask';
@@ -19,11 +18,11 @@ class App extends Component {
     const newTask = {
       taskDescription: taskText,
       id: taskid,
-      completed: false,
+      completed: false
       
     }
-   // currentListOfTasks.push(newTask);
-    //this.setState({ tasks: currentListOfTasks })
+    currentListOfTasks.push(newTask);
+    this.setState({ tasks: currentListOfTasks })
 
   }
 
@@ -61,27 +60,24 @@ class App extends Component {
       
       if (!existingTask[i].completed){
       
-        count++;}
-
-    
+        count++;
+      }
+  
     }
-    
-    return count;
-    
+   return count;
+   
   }
 
   componentDidMount =()=>{
     axios.get('https://j0nyne8byl.execute-api.eu-west-2.amazonaws.com/dev/tasks')
-        .then(function(response){
-          console.log(response);
-        })
+      .then(response => {
+              this.setState({
+              tasks: response.data.task});
+    })
         . catch(err => {
           console.log(err);
         })
-        .then(response => {
-          this.setState({
-            tasks: response.data});
-        })
+        
   }
   
 
